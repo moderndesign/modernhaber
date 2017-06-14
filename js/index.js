@@ -1,9 +1,3 @@
-
-/*
-para
- (c) www.modernwebtasarim.com
-*/
-
 $(document).ready(function(){
 	var usd = document.getElementById("try");
 	var eur = document.getElementById("eur");
@@ -62,11 +56,6 @@ $(document).ready(function(){
 });
 	
 
-/*
-para döndür
- (c) www.modernwebtasarim.com
-*/
-
 $(document).ready(function() {
   var block_arr = $('.para tspan').map(function() { return $(this).get(0);}).toArray();
   
@@ -91,11 +80,6 @@ $(document).ready(function() {
   setInterval(scroll_ticker, 5000);
 });
 
-
-/*
-yutup
- (c) www.modernwebtasarim.com
-*/
 
 
 jQuery(document).ready(function($) {
@@ -187,50 +171,10 @@ son dakika
 
 
 
-/*
-saat
- (c) www.modernwebtasarim.com
-*/
-
-function updateTime() {
-  var dateInfo = new Date();
-
-  // get computer time
-  var hr,
-    _min = (dateInfo.getMinutes() < 10) ? "0" + dateInfo.getMinutes() : dateInfo.getMinutes(),
-    ampm = (dateInfo.getHours() > 12) ? " ÖS" : " ÖÖ";
-
-  if (dateInfo.getHours() == 0) {
-    hr = 12;
-  } else if (dateInfo.getHours() > 12) {
-    hr = dateInfo.getHours() - 12;
-  } else {
-    hr = dateInfo.getHours();
-  }
-
-  var currentTime = hr + ":" + _min;
-
-  // print time
-  document.querySelector(".saat").innerHTML = currentTime;
-  document.querySelector(".kisim").innerHTML = ampm;
-};
-
-// print time and date once, then update them every second
-updateTime();
-setInterval(function() {
-  updateTime()
-}, 1000);
 
 
 
 
-
-
-
-/*
-HABER OKUMA SERVİSİ
- (c) www.modernwebtasarim.com
-*/
 if("undefined"!=typeof responsiveVoice)console.log("ResponsiveVoice already loaded"),console.log(responsiveVoice);else var ResponsiveVoice=function(){var a=this;a.version="1.5.2";console.log("ResponsiveVoice r"+a.version);a.responsivevoices=[{name:"UK English Female",flag:"gb",gender:"f",voiceIDs:[3,5,1,6,7,171,278,201,257,258,8]},{name:"UK English Male",flag:"gb",gender:"m",voiceIDs:[0,4,2,75,277,202,256,159,6,7]},{name:"US English Female",flag:"us",gender:"f",voiceIDs:[39,40,41,42,43,173,205,204,
 235,44]},{name:"Arabic Male",flag:"ar",gender:"m",voiceIDs:[96,95,97,196,98],deprecated:!0},{name:"Arabic Female",flag:"ar",gender:"f",voiceIDs:[96,95,97,196,98]},{name:"Armenian Male",flag:"hy",gender:"f",voiceIDs:[99]},{name:"Australian Female",flag:"au",gender:"f",voiceIDs:[87,86,5,276,201,88]},{name:"Brazilian Portuguese Female",flag:"br",gender:"f",voiceIDs:[245,124,123,125,186,223,126]},{name:"Chinese Female",flag:"cn",gender:"f",voiceIDs:[249,58,59,60,155,191,281,231,268,269,61]},{name:"Chinese (Hong Kong) Female",
 flag:"hk",gender:"f",voiceIDs:[192,193,232,250,251,270,252]},{name:"Chinese Taiwan Female",flag:"tw",gender:"f",voiceIDs:[252,194,233,253,254,255]},{name:"Czech Female",flag:"cz",gender:"f",voiceIDs:[101,100,102,197,103]},{name:"Danish Female",flag:"dk",gender:"f",voiceIDs:[105,104,106,198,107]},{name:"Deutsch Female",flag:"de",gender:"f",voiceIDs:[27,28,29,30,31,78,170,275,199,261,262,32]},{name:"Dutch Female",flag:"nl",gender:"f",voiceIDs:[243,219,84,157,158,184,45]},{name:"Finnish Female",flag:"fi",
