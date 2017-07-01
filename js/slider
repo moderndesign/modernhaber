@@ -1,7 +1,10 @@
-
-
-
-
+/*
+ jQuery placeholderTypewriter plugin
+ ===================================
+ Author: Bjoern Diekert <https://github.com/bdiekert>
+ Version: 1.0
+ License: Unlicense <http://unlicense.org>
+ */
 (function ($) {
   "use strict";
 
