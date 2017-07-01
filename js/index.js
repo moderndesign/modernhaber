@@ -253,3 +253,97 @@ e=function(a){return function(b){return function(c){return a(b(c))}}},l=function
 u=function(a){var b=d(a,3);a=b[0];var c=b[1],b=b[2];return[0===(Number(b)||0)?"":n[b]+" hundred ",0===(Number(a)||0)?p[c]:p[c]&&p[c]+" "||"",n[c+a]||n[a]].join("")},v=function(a,b){return""===a?a:a+" "+t[b]};return"number"===typeof b?a.numToWords(String(b)):"0"===b?"zero":e(m(3))(g)(Array.from(b)).map(u).map(v).filter(e(l)(h)).reverse().join(" ").trim()};a.getWords=function(b){for(var c=b.split(/(\s*[\s,]\s*|\?|;|:|\.|\(|\)|!)/),c=c.filter(function(a){return/[^\s]/.test(a)}),d=0;d<c.length;d++)null!=
 (b=c[d].toString().match(/\d+/))&&(c.splice(d,1),a.numToWords(+b[0]).split(/\s+/).map(function(a){c.push(a)}));return c};a.getEstimatedTimeLength=function(b,c){var d=a.getWords(b),h=0,k=a.fallbackMode?1300:700;c=c||1;d.map(function(a,b){h+=(a.toString().match(/[^ ]/igm)||a).length});var f=d.length,g=60/a.WORDS_PER_MINUTE*c*1E3*f;5>f&&(g=c*(k+50*h));a.log("Estimated time length: "+g+" ms, words: ["+d+"], charsCount: "+h);return g};a.services={NATIVE_TTS:0,FALLBACK_AUDIO:1};a.servicesPriority=[0,1];
 a.servicesEnabled=[];a.setServiceEnabled=function(b,c){a.servicesEnabled[b]=c};a.getServiceEnabled=function(b){return a.servicesEnabled[b]||!1};a.setServiceEnabled(a.services.NATIVE_TTS,!0);a.setServiceEnabled(a.services.FALLBACK_AUDIO,!0)},responsiveVoice=new ResponsiveVoice;
+
+
+
+
+
+
+(function ($) {
+  "use strict";
+
+  $.fn.placeholderTypewriter = function (options) {
+
+    // Plugin Settings
+    var settings = $.extend({
+      delay: 50,
+      pause: 1000,
+      text: []
+    }, options);
+
+    // Type given string in placeholder
+    function typeString($target, index, cursorPosition, callback) {
+
+      // Get text
+      var text = settings.text[index];
+
+      // Get placeholder, type next character
+      var placeholder = $target.attr('placeholder');
+      $target.attr('placeholder', placeholder + text[cursorPosition]);
+
+      // Type next character
+      if (cursorPosition < text.length - 1) {
+        setTimeout(function () {
+          typeString($target, index, cursorPosition + 1, callback);
+        }, settings.delay);
+        return true;
+      }
+
+      // Callback if animation is finished
+      callback();
+    }
+
+    // Delete string in placeholder
+    function deleteString($target, callback) {
+
+      // Get placeholder
+      var placeholder = $target.attr('placeholder');
+      var length = placeholder.length;
+
+      // Delete last character
+      $target.attr('placeholder', placeholder.substr(0, length - 1));
+
+      // Delete next character
+      if (length > 1) {
+        setTimeout(function () {
+          deleteString($target, callback)
+        }, settings.delay);
+        return true;
+      }
+
+      // Callback if animation is finished
+      callback();
+    }
+
+    // Loop typing animation
+    function loopTyping($target, index) {
+
+      // Clear Placeholder
+      $target.attr('placeholder', '');
+
+      // Type string
+      typeString($target, index, 0, function () {
+
+        // Pause before deleting string
+        setTimeout(function () {
+
+          // Delete string
+          deleteString($target, function () {
+            // Start loop over
+            loopTyping($target, (index + 1) % settings.text.length)
+          })
+
+        }, settings.pause);
+      })
+
+    }
+
+    // Run placeholderTypewriter on every given field
+    return this.each(function () {
+
+      loopTyping($(this), 0);
+    });
+
+  };
+
+}(jQuery));
