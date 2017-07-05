@@ -306,20 +306,7 @@ function adjustCloudiness(clouds) {
     $(".clouds").velocity({bottom: temp}, 1000, "spring");
 } 
 
-function adjustSkyColor(n, day) {
-    n *= 2;   
-    if (day) {
-        $("#sky").velocity({ 
-            backgroundColorGreen: 30+(100*n),
-            backgroundColorBlue: 255-(80*n)
-        }, 1000);       
-    } else {
-        $("#sky").velocity({  // Night colors could use some work
-            backgroundColorGreen: (130*n),
-            backgroundColorBlue: 255-(80*n)
-        }, 1000); 
-    }   
-}
+
 
 function adjustStars(opacity, day) {
     if (!day) $("#stars").velocity({opacity: 1-opacity});
